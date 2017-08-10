@@ -111,7 +111,7 @@ Some general considerations follow.
 
 - no time to train, retrain, tune hyperparameters
 - limited computational resources
-- not enough data
+- dataset limitations
 
 ## Although...
 ![](figures/use_dl.png)
