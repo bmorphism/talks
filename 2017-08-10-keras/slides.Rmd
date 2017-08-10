@@ -166,7 +166,7 @@ https://rstudio.github.io/keras/reference/install_keras.html
 
 ## Demo
 
-## notMNIST - if you fancy a challenge
+## notMNIST
 
 MNIST is a classic / clean dataset.
 
@@ -200,6 +200,11 @@ When not to use Keras?
 
 ## Even More Deep Learning
 ![](figures/coursera.png)
+
+
+## More CNNs
+http://cs231n.github.io/
+![](figures/cs231n.png)
 
 ## More Deep Learning Theory
 
