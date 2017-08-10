@@ -64,6 +64,7 @@ model %>% fit(
   x_train, y_train,
   batch_size = batch_size,
   epochs = epochs,
+  validation_split = 0.1,
   verbose = 1,
   callbacks = list(stopper, checker))
 
