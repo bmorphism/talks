@@ -16,8 +16,12 @@ output:
 - Jason Mancuso (@[jvmancuso](https://twitter.com/jvmancuso))
 - my wife Naya (for letting me borrow her laptop for this talk)
 ## Disclaimer
+
 Not a comprehensive introduction to artificial neural networks.
 
+Pointers to learning materials will be provided.
+
+The talk and demo code can be accessed at [](https://git.io/v7ysE)
 
 ## [Keras](https://keras.io/)
 
