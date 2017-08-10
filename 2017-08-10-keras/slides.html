@@ -546,7 +546,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p>Output layers:</p>
 <ul>
 <li>linear</li>
-<li>sofmax</li>
+<li>softmax</li>
 <li>sigmoid</li>
 <li>tanh</li>
 </ul>
@@ -568,8 +568,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>Loss function</h2>
 <p>Loss (or cost) function is a function that tells us how much off we are from the true values <span class="math inline">\(y\)</span>.</p>
 <p>Mean squared error is a famous one.</p>
-<p>For classification problems, we will use maximum cross-entropy.</p>
+<p>For classification problems, we will use categorical cross-entropy.</p>
 <p>More losses here: <a href="https://keras.io/losses/" class="uri">https://keras.io/losses/</a></p>
+</section>
+<section id="ml-optimization" class="slide level2">
+<h2>ML ~= Optimization</h2>
+<p>The objective of deep learning, then, is to update the weights between layers of the neural network so as to minimize the cost function on the test set.</p>
 </section>
 <section id="backpropagation" class="slide level2">
 <h2>Backpropagation</h2>
@@ -593,7 +597,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>no time to train, retrain, tune hyperparameters</li>
 <li>limited computational resources</li>
-<li>not enough data</li>
+<li>dataset limitations</li>
 </ul>
 </section>
 <section id="although" class="slide level2">
@@ -607,6 +611,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="dropout" class="slide level2">
 <h2>Dropout</h2>
 <p><img src="figures/dropout.jpg" /></p>
+</section>
+<section id="cnns" class="slide level2">
+<h2>CNNs</h2>
+<p><img src="figures/convnet.jpeg" /></p>
+<p>Intuitive introduction:</p>
+<p><a href="https://algobeans.com/2016/01/26/introduction-to-convolutional-neural-network/" class="uri">https://algobeans.com/2016/01/26/introduction-to-convolutional-neural-network/</a></p>
 </section>
 <section id="keras-and" class="slide level2">
 <h2>keras and 🐍</h2>

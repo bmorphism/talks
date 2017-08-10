@@ -98,7 +98,8 @@ The objective of deep learning, then, is to update the weights between layers of
 What neural networks crave
 
 ## Tensorflow, Theano, and friends
-
+- highly optimized for tensor operations
+- typically low-level (C, Lua)
 
 ## Deep Learning in a Nutshell
 A better etymology?
@@ -121,6 +122,13 @@ Some general considerations follow.
 
 ## Dropout
 ![](figures/dropout.jpg)
+
+## CNNs
+![](figures/convnet.jpeg)
+
+Intuitive introduction:
+
+[https://algobeans.com/2016/01/26/introduction-to-convolutional-neural-network/](https://algobeans.com/2016/01/26/introduction-to-convolutional-neural-network/)
 
 ## keras and 🐍
 Simple feedforward network in Python version of keras:
@@ -247,7 +255,7 @@ Keras is great for rapid prototyping and learning!
 
 When not to use Keras?
 
-- non-standard / research neural nets
+- neural nets in production
 - need a good debugger (TF / PyTorch)
 - need a dynamic computational graph (use PyTorch!)
 
