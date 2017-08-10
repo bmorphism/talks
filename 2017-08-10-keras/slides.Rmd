@@ -11,59 +11,13 @@ output:
     self_contained: false
     reveal_plugins: ["zoom"]
 ---
+## Acknowledgements
+- [rstudio/keras documentation](https://rstudio.github.io/keras/)
+- Jason Mancuso (@[jvmancuso](https://twitter.com/jvmancuso))
+- my wife Naya (for letting me borrow her laptop for this talk)
+## Disclaimer
+Not a comprehensive introduction to artificial neural networks.
 
-
-## Supervised Learning
-
-Given a dataset of input values $X$ and the corresponding outputs $y$, learn a generalizable
-function $h(X)$.
-
-DNNs are very effective at fitting non-linear $h(X)$ and achieve SOA on supervised machine learning tasks.
-
-## MNIST
-
-We are going to train a CNN (convolutional neural network) on a MNIST dataset containing labeled digits 0-9.
-
-Goal: given a labeled training set, correctly classify new images as the corresponding digit.
-
-![](figures/mnist.jpg)
-
-[](http://yann.lecun.com/exdb/mnist/)
-
-## Neural Networks
-
-![](figures/simple_nn.jpg)
-
-
-## Neurons
-![](figures/neuron.jpg)
-
-## Activation functions
-
-Popular candidates:
-
-- linear
-- softmax
-- ReLU (Rectifier Linear Unit)
-
-## Softmax activation
-
-## ReLU activation
-
-## What makes it deep - Layers
-
-![](figures/cnn.png)
-
-## Loss function
-
-
-
-## Backpropagation
-
-## Tensors
-What neural networks crave
-
-## Tensorflow, Theano, and friends
 
 ## [Keras](https://keras.io/)
 
@@ -79,12 +33,66 @@ Keras (κέρας) means horn in Greek. It is a reference to a literary image fr
 
 Keras was initially developed as part of the research effort of project ONEIROS (Open-ended Neuro-Electronic Intelligent Robot Operating System).
 
-## Deep Learning in a Nutshell
+## Neural Networks
 
+![](figures/simple_nn.jpg)
+
+## Neurons
+![](figures/neuron.jpg)
+
+## Activation functions
+
+Popular candidates:
+
+- linear
+- softmax
+- ReLU (Rectifier Linear Unit)
+
+## What makes it deep - Layers
+
+![](figures/cnn.png)
+
+## How does it learn?
+## Supervised Learning
+
+Given a dataset of input values $X$ and the corresponding outputs $y$, learn a generalizable
+function $h(X)$.
+
+DNNs are very effective at fitting non-linear $h(X)$ and achieve SOA on supervised machine learning tasks.
+
+
+## Loss function
+
+
+
+## Backpropagation
+
+## Tensors
+What neural networks crave
+
+## Tensorflow, Theano, and friends
+
+
+## Deep Learning in a Nutshell
+A better etymology?
 ![](figures/etymology.png)
 
-## Models & Layers - the Zen of Keras
-Simple feedforward network:
+Some general considerations follow.
+
+## When not to use it
+![](figures/do_not_use_dl.png) 
+
+## Although...
+![](figures/use_dl.png)
+
+## Avoid overfitting
+![](figures/neuron_counts.jpg)
+
+## Dropout
+![](figures/dropout.jpg)
+
+## keras and 🐍
+Simple feedforward network in Python version of keras:
 
 ```python
 from keras.models import Sequential
@@ -180,8 +188,16 @@ install_keras(method = conda, tensorflow_gpu = FALSE) # TRUE for GPU
 ```
 https://rstudio.github.io/keras/reference/install_keras.html
 
-## Demo
+## MNIST
 
+We are going to train a CNN (convolutional neural network) on a MNIST dataset containing labeled digits 0-9.
+
+Goal: given a labeled training set, correctly classify new images as the corresponding digit.
+
+![](figures/mnist.jpg)
+
+[](http://yann.lecun.com/exdb/mnist/)
+## Demo
 ## notMNIST
 
 MNIST is a classic / clean dataset.
