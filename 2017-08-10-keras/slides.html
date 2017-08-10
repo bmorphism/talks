@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Barton Rhodes @ DenverRUG" />
+  <meta name="dcterms.date" content="2017-08-10" />
+  <title>Building Neural Networks in R using Keras</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
+</style>
+
+<link rel="stylesheet" href="slides_files/reveal.js-3.3.0.1/css/theme/solarized.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Building Neural Networks in R using Keras</h1>
+    <h2 class="author">Barton Rhodes @ DenverRUG</h2>
+    <h3 class="date">2017-08-10</h3>
+</section>
+
+<section id="supervised-learning" class="slide level2">
+<h2>Supervised Learning</h2>
+</section>
+<section id="neural-networks" class="slide level2">
+<h2>Neural Networks</h2>
+</section>
+<section id="neurons" class="slide level2">
+<h2>Neurons</h2>
+</section>
+<section id="activation-functions" class="slide level2">
+<h2>Activation functions</h2>
+</section>
+<section id="layers" class="slide level2">
+<h2>Layers</h2>
+</section>
+<section id="loss-function" class="slide level2">
+<h2>Loss function</h2>
+</section>
+<section id="backpropagation" class="slide level2">
+<h2>Backpropagation</h2>
+</section>
+<section id="tensors" class="slide level2">
+<h2>Tensors</h2>
+<p>What neural networks crave</p>
+</section>
+<section id="tensorflow-theano-and-friends" class="slide level2">
+<h2>Tensorflow, Theano, and friends</h2>
+</section>
+<section id="keras" class="slide level2">
+<h2><a href="https://keras.io/">Keras</a></h2>
+<p>Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano.</p>
+<p>Originally developed by François Chollet to facilitate AI research, the guiding principles were simplicity and rapid prototyping.</p>
+<p><em>Being able to go from idea to result with the least possible delay is key to doing good research.</em> (source: <a href="Keras.io" class="uri">Keras.io</a>)</p>
+</section>
+<section id="whats-in-a-name" class="slide level2">
+<h2>What’s in a name?</h2>
+<p>Keras (κέρας) means horn in Greek. It is a reference to a literary image from ancient Greek and Latin literature, first found in the Odyssey, where dream spirits (Oneiroi, singular Oneiros) are divided between those who deceive men with false visions, who arrive to Earth through a gate of ivory, and those who announce a future that will come to pass, who arrive through a gate of horn. It’s a play on the words κέρας (horn) / κραίνω (fulfill), and ἐλέφας (ivory) / ἐλεφαίρομαι (deceive).</p>
+<p>Keras was initially developed as part of the research effort of project ONEIROS (Open-ended Neuro-Electronic Intelligent Robot Operating System).</p>
+</section>
+<section id="deep-learning-in-a-nutshell" class="slide level2">
+<h2>Deep Learning in a Nutshell</h2>
+<p><img src="figures/etymology.png" /></p>
+</section>
+<section id="models-layers---the-zen-of-keras" class="slide level2">
+<h2>Models &amp; Layers - the Zen of Keras</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> keras.models <span class="im">import</span> Sequential
+
+model <span class="op">=</span> Sequential()
+
+<span class="im">from</span> keras.layers <span class="im">import</span> Dense, Activation
+
+model.add(Dense(units<span class="op">=</span><span class="dv">64</span>, input_dim<span class="op">=</span><span class="dv">100</span>))
+model.add(Activation(<span class="st">&#39;relu&#39;</span>))
+model.add(Dense(units<span class="op">=</span><span class="dv">10</span>))
+model.add(Activation(<span class="st">&#39;softmax&#39;</span>))
+
+model.<span class="bu">compile</span>(loss<span class="op">=</span>keras.losses.categorical_crossentropy,
+              optimizer<span class="op">=</span>keras.optimizers.SGD(lr<span class="op">=</span><span class="fl">0.01</span>, 
+                                             momentum<span class="op">=</span><span class="fl">0.9</span>,
+                                             nesterov<span class="op">=</span><span class="va">True</span>))
+              
+model.fit(x_train, y_train, epochs<span class="op">=</span><span class="dv">5</span>, batch_size<span class="op">=</span><span class="dv">32</span>)
+
+classes <span class="op">=</span> model.predict(x_test, batch_size<span class="op">=</span><span class="dv">128</span>)</code></pre></div>
+<p><a href="https://keras.io/models/sequential/" class="uri">https://keras.io/models/sequential/</a> <a href="https://keras.io/layers/core/" class="uri">https://keras.io/layers/core/</a></p>
+</section>
+<section id="keras-and-r" class="slide level2">
+<h2>Keras and R</h2>
+<ul>
+<li>Taylor Arnold’s <em>kerasR</em>:</li>
+</ul>
+<p><a href="https://github.com/statsmaths/kerasR" class="uri">https://github.com/statsmaths/kerasR</a></p>
+<ul>
+<li>J.J. Allaire’s <em>rstudio/keras</em>:</li>
+</ul>
+<p><a href="https://rstudio.github.io/keras/" class="uri">https://rstudio.github.io/keras/</a></p>
+<p>Both rely on <a href="https://github.com/rstudio/reticulate"><em>reticulate</em></a>, R interface to Python.</p>
+</section>
+<section id="option-1-install-kerasr" class="slide level2">
+<h2>Option 1: Install kerasR</h2>
+<ol type="1">
+<li><p>Install Anaconda <a href="https://www.continuum.io/downloads" class="uri">https://www.continuum.io/downloads</a></p></li>
+<li><p>Create a new environment <a href="https://conda.io/docs/using/envs.html" class="uri">https://conda.io/docs/using/envs.html</a></p></li>
+</ol>
+<pre><code>conda create --name dlnn python=3.6 anaconda</code></pre>
+<ol start="3" type="1">
+<li>Install TensorFlow (or Theano!) <a href="https://www.tensorflow.org/install/" class="uri">https://www.tensorflow.org/install/</a></li>
+</ol>
+<p>Be sure to pick the GPU version if you have an NVIDIA card!</p>
+</section>
+<section id="option-1-continued-install-kerasr" class="slide level2">
+<h2>Option 1 (continued): Install kerasR</h2>
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }  
+</style>
+<p>In R:</p>
+<ol start="4" type="1">
+<li><p>Install <em>kerasR</em> package (also <em>reticulate</em>)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;kerasR&quot;</span>)</code></pre></div></li>
+<li><p>Activate previously created Anaconda environment</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reticulate<span class="op">::</span><span class="kw">use_condaenv</span>(<span class="st">&quot;dlnn&quot;</span>)</code></pre></div></li>
+<li><p>Test keras availability (should return TRUE)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reticulate<span class="op">::</span><span class="kw">py_module_available</span>(<span class="st">&quot;keras&quot;</span>)</code></pre></div></li>
+</ol>
+</section>
+<section id="option-2-install-rstudiokeras" class="slide level2">
+<h2>Option 2: Install rstudio/keras</h2>
+<ol type="1">
+<li>Install Anaconda</li>
+</ol>
+<p><a href="https://www.continuum.io/downloads" class="uri">https://www.continuum.io/downloads</a></p>
+<p>In RStudio:</p>
+<ol start="2" type="1">
+<li>Install from GitHub (as of 08/17)</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/keras&quot;</span>)</code></pre></div>
+<ol start="3" type="1">
+<li>Have RStudio handle keras installation</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(keras)
+<span class="kw">install_keras</span>(<span class="dt">method =</span> conda, <span class="dt">tensorflow_gpu =</span> <span class="ot">FALSE</span>) <span class="co"># TRUE for GPU</span></code></pre></div>
+<p><a href="https://rstudio.github.io/keras/reference/install_keras.html" class="uri">https://rstudio.github.io/keras/reference/install_keras.html</a></p>
+</section>
+<section id="cnn-walkthrough" class="slide level2">
+<h2>CNN walkthrough</h2>
+</section>
+<section id="demo" class="slide level2">
+<h2>Demo</h2>
+</section>
+<section id="notmnist---if-you-fancy-a-challenge" class="slide level2">
+<h2>notMNIST - if you fancy a challenge</h2>
+<p>MNIST is a classic / clean dataset.</p>
+<p>notMNIST is a more challenging dataset developed by Yaroslav Bulatov (Google Brain / OpenAI).</p>
+<p>See what accuracy you can get!</p>
+<p>I recommend starting here:</p>
+<p><a href="https://github.com/davidflanagan/notMNIST-to-MNIST" class="uri">https://github.com/davidflanagan/notMNIST-to-MNIST</a></p>
+</section>
+<section id="concluding-remarks" class="slide level2">
+<h2>Concluding remarks</h2>
+<p>Keras is great for rapid prototyping and learning!</p>
+<p>When not to use Keras?</p>
+<ul>
+<li>non-standard / research neural nets</li>
+<li>need a good debugger (TF / PyTorch)</li>
+<li>need a dynamic computational graph (use PyTorch!)</li>
+</ul>
+</section>
+<section id="more-keras" class="slide level2">
+<h2>More Keras</h2>
+<p><a href="http://keras.io">Keras.io</a></p>
+<p><img src="figures/kerasio.png" /></p>
+</section>
+<section id="more-deep-learning" class="slide level2">
+<h2>More Deep Learning</h2>
+<p><img src="figures/fastai.png" /></p>
+</section>
+<section id="even-more-deep-learning" class="slide level2">
+<h2>Even More Deep Learning</h2>
+<p><img src="figures/coursera.png" /></p>
+</section>
+<section id="more-deep-learning-theory" class="slide level2">
+<h2>More Deep Learning Theory</h2>
+<p><img src="figures/goodfellow.jpg" /></p>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+</section>
+<section id="thanks" class="slide level2">
+<h2>Thanks!</h2>
+<p>Let’s keep in touch:</p>
+<ul>
+<li>Email: <a href="mailto:b@bmorphism.us">b@bmorphism.us</a></li>
+<li>GitHub: <a href="https://github.com/bmorphism" class="uri">https://github.com/bmorphism</a></li>
+<li>Data.world: <a href="https://data.world/bmorphism" class="uri">https://data.world/bmorphism</a></li>
+<li>Twitter: @<a href="https://twitter.com/bmorphism">bmorphism</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

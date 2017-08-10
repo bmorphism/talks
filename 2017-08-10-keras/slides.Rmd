@@ -15,20 +15,32 @@ output:
 
 ## Supervised Learning
 
-The fundamental problem we are trying to solve is that of supervised learning
+
 
 ## Neural Networks
 
-## Deep Neural Networks
+## Neurons
+
+## Activation functions
+
+## Layers
+
+## Loss function
+
+## Backpropagation
 
 ## Tensors
 What neural networks crave
 
 ## Tensorflow, Theano, and friends
 
-## Keras
+## [Keras](https://keras.io/)
 
-Keras is love, Keras is life
+Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano.
+
+Originally developed by François Chollet to facilitate AI research, the guiding principles were simplicity and rapid prototyping.
+
+_Being able to go from idea to result with the least possible delay is key to doing good research._ (source: [Keras.io](Keras.io))
 
 ## What's in a name?
 
@@ -40,6 +52,34 @@ Keras was initially developed as part of the research effort of project ONEIROS 
 
 ![](figures/etymology.png)
 
+## Models & Layers - the Zen of Keras
+
+
+```python
+from keras.models import Sequential
+
+model = Sequential()
+
+from keras.layers import Dense, Activation
+
+model.add(Dense(units=64, input_dim=100))
+model.add(Activation('relu'))
+model.add(Dense(units=10))
+model.add(Activation('softmax'))
+
+model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.SGD(lr=0.01, 
+                                             momentum=0.9,
+                                             nesterov=True))
+              
+model.fit(x_train, y_train, epochs=5, batch_size=32)
+
+classes = model.predict(x_test, batch_size=128)
+```
+
+[https://keras.io/models/sequential/](https://keras.io/models/sequential/)
+[https://keras.io/layers/core/](https://keras.io/layers/core/)
+
 ## Keras and R
 
 - Taylor Arnold's _kerasR_:
@@ -50,9 +90,9 @@ https://github.com/statsmaths/kerasR
 
 https://rstudio.github.io/keras/
 
-Both rely on _reticulate_, R interface to Python.
+Both rely on [_reticulate_](https://github.com/rstudio/reticulate), R interface to Python.
 
-## Option 1: Installing kerasR
+## Option 1: Install kerasR
 
 1. Install Anaconda
 https://www.continuum.io/downloads
@@ -69,7 +109,7 @@ https://www.tensorflow.org/install/
 
 Be sure to pick the GPU version if you have an NVIDIA card!
 
-## Option 1 (continued): Installing kerasR
+## Option 1 (continued): Install kerasR
 
 <style type="text/css">
   .reveal p {
@@ -101,7 +141,7 @@ reticulate::use_condaenv("dlnn")
 reticulate::py_module_available("keras")
 ```
 
-## Option 2: Installing rstudio/keras
+## Option 2: Install rstudio/keras
 1. Install Anaconda
 
 https://www.continuum.io/downloads
@@ -122,12 +162,31 @@ install_keras(method = conda, tensorflow_gpu = FALSE) # TRUE for GPU
 ```
 https://rstudio.github.io/keras/reference/install_keras.html
 
-
-## Simple example
+## CNN walkthrough
 
 ## Demo
 
+## notMNIST - if you fancy a challenge
+
+MNIST is a classic / clean dataset.
+
+notMNIST is a more challenging dataset developed by Yaroslav Bulatov (Google Brain / OpenAI).
+
+See what accuracy you can get!
+
+I recommend starting here:
+
+https://github.com/davidflanagan/notMNIST-to-MNIST
+
 ## Concluding remarks
+
+Keras is great for rapid prototyping and learning!
+
+When not to use Keras?
+
+- non-standard / research neural nets
+- need a good debugger (TF / PyTorch)
+- need a dynamic computational graph (use PyTorch!)
 
 ## More Keras
 
@@ -153,4 +212,7 @@ https://rstudio.github.io/keras/reference/install_keras.html
 Let's keep in touch:
 
 + Email: [b@bmorphism.us](mailto:b@bmorphism.us)
++ GitHub: [https://github.com/bmorphism](https://github.com/bmorphism)
++ Data.world: [https://data.world/bmorphism](https://data.world/bmorphism)
 + Twitter: @[bmorphism](https://twitter.com/bmorphism)
+
