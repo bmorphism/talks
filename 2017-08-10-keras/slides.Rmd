@@ -46,9 +46,13 @@ Popular candidates:
 - softmax
 - ReLU (Rectifier Linear Unit)
 
-## Layers
+## Softmax activation
 
+## ReLU activation
 
+## What makes it deep - Layers
+
+![](figures/cnn.png)
 
 ## Loss function
 
