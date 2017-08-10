@@ -11,17 +11,22 @@ output:
     self_contained: false
     reveal_plugins: ["zoom"]
 ---
+## About me
+
+- Senior Data Scientist at Pandata LLC ([http://pandata.co](http://pandata.co))
+- Applying ("classical") ML to cybersecurity
+- Delving more into deep learning / AI methods
+
 ## Acknowledgements
 - [rstudio/keras documentation](https://rstudio.github.io/keras/)
 - Jason Mancuso (@[jvmancuso](https://twitter.com/jvmancuso))
 - my wife Naya (for letting me borrow her laptop for this talk)
+
 ## Disclaimer
 
-Not a comprehensive introduction to artificial neural networks.
+Not a comprehensive introduction to deep learning, pointers to learning materials towards the end.
 
-Pointers to learning materials will be provided.
-
-The talk and demo code can be accessed at [](https://git.io/v7ysE)
+The talk and **demo code** can be accessed at [https://git.io/v7ysE](https://git.io/v7ysE)
 
 ## [Keras](https://keras.io/)
 
@@ -44,19 +49,28 @@ Keras was initially developed as part of the research effort of project ONEIROS 
 ## Neurons
 ![](figures/neuron.jpg)
 
-## Activation functions
+## Popular activation functions
 
-Popular candidates:
+Hidden layers:
+
+- sigmoid
+- tanh
+- ReLU (Rectifier Linear Unit)
+
+Output layers:
 
 - linear
-- softmax
-- ReLU (Rectifier Linear Unit)
+- sofmax
+- sigmoid
+- tanh
 
 ## What makes it deep - Layers
 
 ![](figures/cnn.png)
 
 ## How does it learn?
+![](figures/weights.png)
+
 ## Supervised Learning
 
 Given a dataset of input values $X$ and the corresponding outputs $y$, learn a generalizable
@@ -66,10 +80,16 @@ DNNs are very effective at fitting non-linear $h(X)$ and achieve SOA on supervis
 
 
 ## Loss function
+Loss (or cost) function is a function that tells us how much off we are from the true values $y$.
 
+Mean squared error is a famous one.
 
+For classification problems, we will use maximum cross-entropy.
+
+More losses here: [https://keras.io/losses/](https://keras.io/losses/)
 
 ## Backpropagation
+![](figures/backpropagation.jpg)
 
 ## Tensors
 What neural networks crave
@@ -85,6 +105,10 @@ Some general considerations follow.
 
 ## When not to use it
 ![](figures/do_not_use_dl.png) 
+
+- no time to train, retrain, tune hyperparameters
+- limited computational resources
+- not enough data
 
 ## Although...
 ![](figures/use_dl.png)

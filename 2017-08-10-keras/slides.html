@@ -495,13 +495,26 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h3 class="date">2017-08-10</h3>
 </section>
 
+<section id="about-me" class="slide level2">
+<h2>About me</h2>
+<ul>
+<li>Senior Data Scientist at Pandata LLC (<a href="http://pandata.co" class="uri">http://pandata.co</a>)</li>
+<li>Applying (“classical”) ML to cybersecurity</li>
+<li>Delving more into deep learning / AI methods</li>
+</ul>
+</section>
 <section id="acknowledgements" class="slide level2">
 <h2>Acknowledgements</h2>
 <ul>
 <li><a href="https://rstudio.github.io/keras/">rstudio/keras documentation</a></li>
 <li>Jason Mancuso (@<a href="https://twitter.com/jvmancuso">jvmancuso</a>)</li>
-<li>my wife Naya (for letting me borrow her laptop for this talk) ## Disclaimer Not a comprehensive introduction to artificial neural networks.</li>
+<li>my wife Naya (for letting me borrow her laptop for this talk)</li>
 </ul>
+</section>
+<section id="disclaimer" class="slide level2">
+<h2>Disclaimer</h2>
+<p>Not a comprehensive introduction to deep learning, pointers to learning materials towards the end.</p>
+<p>The talk and <strong>demo code</strong> can be accessed at <a href="https://git.io/v7ysE" class="uri">https://git.io/v7ysE</a></p>
 </section>
 <section id="keras" class="slide level2">
 <h2><a href="https://keras.io/">Keras</a></h2>
@@ -522,13 +535,20 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>Neurons</h2>
 <p><img src="figures/neuron.jpg" /></p>
 </section>
-<section id="activation-functions" class="slide level2">
-<h2>Activation functions</h2>
-<p>Popular candidates:</p>
+<section id="popular-activation-functions" class="slide level2">
+<h2>Popular activation functions</h2>
+<p>Hidden layers:</p>
+<ul>
+<li>sigmoid</li>
+<li>tanh</li>
+<li>ReLU (Rectifier Linear Unit)</li>
+</ul>
+<p>Output layers:</p>
 <ul>
 <li>linear</li>
-<li>softmax</li>
-<li>ReLU (Rectifier Linear Unit)</li>
+<li>sofmax</li>
+<li>sigmoid</li>
+<li>tanh</li>
 </ul>
 </section>
 <section id="what-makes-it-deep---layers" class="slide level2">
@@ -548,6 +568,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="backpropagation" class="slide level2">
 <h2>Backpropagation</h2>
+<p><img src="figures/backpropagation.jpg" /></p>
 </section>
 <section id="tensors" class="slide level2">
 <h2>Tensors</h2>
@@ -564,6 +585,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="when-not-to-use-it" class="slide level2">
 <h2>When not to use it</h2>
 <p><img src="figures/do_not_use_dl.png" /></p>
+<ul>
+<li>no time to train, retrain, tune hyperparameters</li>
+<li>limited computational resources</li>
+<li>not enough data</li>
+</ul>
 </section>
 <section id="although" class="slide level2">
 <h2>Although…</h2>
