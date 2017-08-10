@@ -43,6 +43,16 @@ model %>%
   layer_dropout(rate = 0.5) %>% 
   layer_dense(units = num_classes, activation = 'softmax')
 
+stopper <- callback_early_stopping(monitor = "val_loss",
+                                   patience = 3,
+                                   mode = "min")
+
+checker <- callback_model_checkpoint(filepath = "best_model_0.h5",
+                                     monitor = "val_loss", 
+                                     ave_best_only = TRUE,
+                                     mode = "min")
+
+
 # compile model
 model %>% compile(
   loss = loss_categorical_crossentropy,
@@ -50,14 +60,15 @@ model %>% compile(
   metrics = c('accuracy')
 )
 
-# train and evaluate
 model %>% fit(
   x_train, y_train,
   batch_size = batch_size,
   epochs = epochs,
   verbose = 1,
-  validation_data = list(x_test, y_test)
-)
+  callbacks = list(stopper, checker))
+
+model = load_model_hdf5("best_model_0.h5")
+
 scores <- model %>% evaluate(
   x_test, y_test, verbose = 0
 )
