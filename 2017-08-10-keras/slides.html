@@ -495,17 +495,24 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h3 class="date">2017-08-10</h3>
 </section>
 
-<section id="supervised-learning" class="slide level2">
-<h2>Supervised Learning</h2>
-<p>Given a dataset of input values <span class="math inline">\(X\)</span> and the corresponding outputs <span class="math inline">\(y\)</span>, learn a generalizable function <span class="math inline">\(h(X)\)</span>.</p>
-<p>DNNs are very effective at fitting non-linear <span class="math inline">\(h(X)\)</span> and achieve SOA on supervised machine learning tasks.</p>
+<section id="acknowledgements" class="slide level2">
+<h2>Acknowledgements</h2>
+<ul>
+<li><a href="https://rstudio.github.io/keras/">rstudio/keras documentation</a></li>
+<li>Jason Mancuso (@<a href="https://twitter.com/jvmancuso">jvmancuso</a>)</li>
+<li>my wife Naya (for letting me borrow her laptop for this talk) ## Disclaimer Not a comprehensive introduction to artificial neural networks.</li>
+</ul>
 </section>
-<section id="mnist" class="slide level2">
-<h2>MNIST</h2>
-<p>We are going to train a CNN (convolutional neural network) on a MNIST dataset containing labeled digits 0-9.</p>
-<p>Goal: given a labeled training set, correctly classify new images as the corresponding digit.</p>
-<p><img src="figures/mnist.jpg" /></p>
-<p><a href="http://yann.lecun.com/exdb/mnist/"></a></p>
+<section id="keras" class="slide level2">
+<h2><a href="https://keras.io/">Keras</a></h2>
+<p>Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano.</p>
+<p>Originally developed by François Chollet to facilitate AI research, the guiding principles were simplicity and rapid prototyping.</p>
+<p><em>Being able to go from idea to result with the least possible delay is key to doing good research.</em> (source: <a href="Keras.io" class="uri">Keras.io</a>)</p>
+</section>
+<section id="whats-in-a-name" class="slide level2">
+<h2>What’s in a name?</h2>
+<p>Keras (κέρας) means horn in Greek. It is a reference to a literary image from ancient Greek and Latin literature, first found in the Odyssey, where dream spirits (Oneiroi, singular Oneiros) are divided between those who deceive men with false visions, who arrive to Earth through a gate of ivory, and those who announce a future that will come to pass, who arrive through a gate of horn. It’s a play on the words κέρας (horn) / κραίνω (fulfill), and ἐλέφας (ivory) / ἐλεφαίρομαι (deceive).</p>
+<p>Keras was initially developed as part of the research effort of project ONEIROS (Open-ended Neuro-Electronic Intelligent Robot Operating System).</p>
 </section>
 <section id="neural-networks" class="slide level2">
 <h2>Neural Networks</h2>
@@ -524,8 +531,17 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>ReLU (Rectifier Linear Unit)</li>
 </ul>
 </section>
-<section id="layers" class="slide level2">
-<h2>Layers</h2>
+<section id="what-makes-it-deep---layers" class="slide level2">
+<h2>What makes it deep - Layers</h2>
+<p><img src="figures/cnn.png" /></p>
+</section>
+<section id="how-does-it-learn" class="slide level2">
+<h2>How does it learn?</h2>
+</section>
+<section id="supervised-learning" class="slide level2">
+<h2>Supervised Learning</h2>
+<p>Given a dataset of input values <span class="math inline">\(X\)</span> and the corresponding outputs <span class="math inline">\(y\)</span>, learn a generalizable function <span class="math inline">\(h(X)\)</span>.</p>
+<p>DNNs are very effective at fitting non-linear <span class="math inline">\(h(X)\)</span> and achieve SOA on supervised machine learning tasks.</p>
 </section>
 <section id="loss-function" class="slide level2">
 <h2>Loss function</h2>
@@ -540,24 +556,30 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="tensorflow-theano-and-friends" class="slide level2">
 <h2>Tensorflow, Theano, and friends</h2>
 </section>
-<section id="keras" class="slide level2">
-<h2><a href="https://keras.io/">Keras</a></h2>
-<p>Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano.</p>
-<p>Originally developed by François Chollet to facilitate AI research, the guiding principles were simplicity and rapid prototyping.</p>
-<p><em>Being able to go from idea to result with the least possible delay is key to doing good research.</em> (source: <a href="Keras.io" class="uri">Keras.io</a>)</p>
-</section>
-<section id="whats-in-a-name" class="slide level2">
-<h2>What’s in a name?</h2>
-<p>Keras (κέρας) means horn in Greek. It is a reference to a literary image from ancient Greek and Latin literature, first found in the Odyssey, where dream spirits (Oneiroi, singular Oneiros) are divided between those who deceive men with false visions, who arrive to Earth through a gate of ivory, and those who announce a future that will come to pass, who arrive through a gate of horn. It’s a play on the words κέρας (horn) / κραίνω (fulfill), and ἐλέφας (ivory) / ἐλεφαίρομαι (deceive).</p>
-<p>Keras was initially developed as part of the research effort of project ONEIROS (Open-ended Neuro-Electronic Intelligent Robot Operating System).</p>
-</section>
 <section id="deep-learning-in-a-nutshell" class="slide level2">
 <h2>Deep Learning in a Nutshell</h2>
-<p><img src="figures/etymology.png" /></p>
+<p>A better etymology? <img src="figures/etymology.png" /></p>
+<p>Some general considerations follow.</p>
 </section>
-<section id="models-layers---the-zen-of-keras" class="slide level2">
-<h2>Models &amp; Layers - the Zen of Keras</h2>
-<p>Simple feedforward network:</p>
+<section id="when-not-to-use-it" class="slide level2">
+<h2>When not to use it</h2>
+<p><img src="figures/do_not_use_dl.png" /></p>
+</section>
+<section id="although" class="slide level2">
+<h2>Although…</h2>
+<p><img src="figures/use_dl.png" /></p>
+</section>
+<section id="avoid-overfitting" class="slide level2">
+<h2>Avoid overfitting</h2>
+<p><img src="figures/neuron_counts.jpg" /></p>
+</section>
+<section id="dropout" class="slide level2">
+<h2>Dropout</h2>
+<p><img src="figures/dropout.jpg" /></p>
+</section>
+<section id="keras-and" class="slide level2">
+<h2>keras and 🐍</h2>
+<p>Simple feedforward network in Python version of keras:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> keras.models <span class="im">import</span> Sequential
 
 model <span class="op">=</span> Sequential()
@@ -633,11 +655,12 @@ classes <span class="op">=</span> model.predict(x_test, batch_size<span class="o
 <span class="kw">install_keras</span>(<span class="dt">method =</span> conda, <span class="dt">tensorflow_gpu =</span> <span class="ot">FALSE</span>) <span class="co"># TRUE for GPU</span></code></pre></div>
 <p><a href="https://rstudio.github.io/keras/reference/install_keras.html" class="uri">https://rstudio.github.io/keras/reference/install_keras.html</a></p>
 </section>
-<section id="demo" class="slide level2">
-<h2>Demo</h2>
-</section>
-<section id="notmnist" class="slide level2">
-<h2>notMNIST</h2>
+<section id="mnist" class="slide level2">
+<h2>MNIST</h2>
+<p>We are going to train a CNN (convolutional neural network) on a MNIST dataset containing labeled digits 0-9.</p>
+<p>Goal: given a labeled training set, correctly classify new images as the corresponding digit.</p>
+<p><img src="figures/mnist.jpg" /></p>
+<p><a href="http://yann.lecun.com/exdb/mnist/"></a> ## Demo ## notMNIST</p>
 <p>MNIST is a classic / clean dataset.</p>
 <p>notMNIST is a more challenging dataset developed by Yaroslav Bulatov (Google Brain / OpenAI).</p>
 <p><img src="figures/notmnist.png" /></p>
