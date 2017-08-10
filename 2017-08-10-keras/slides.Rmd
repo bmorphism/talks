@@ -1,0 +1,156 @@
+---
+title: "Building Neural Networks in R using Keras"
+author: "Barton Rhodes @ DenverRUG"
+date: "2017-08-10"
+output:
+  revealjs::revealjs_presentation:
+    theme: solarized
+    highlight: kate
+    center: true
+    transition: none
+    self_contained: false
+    reveal_plugins: ["zoom"]
+---
+
+
+## Supervised Learning
+
+The fundamental problem we are trying to solve is that of supervised learning
+
+## Neural Networks
+
+## Deep Neural Networks
+
+## Tensors
+What neural networks crave
+
+## Tensorflow, Theano, and friends
+
+## Keras
+
+Keras is love, Keras is life
+
+## What's in a name?
+
+Keras (κέρας) means horn in Greek. It is a reference to a literary image from ancient Greek and Latin literature, first found in the Odyssey, where dream spirits (Oneiroi, singular Oneiros) are divided between those who deceive men with false visions, who arrive to Earth through a gate of ivory, and those who announce a future that will come to pass, who arrive through a gate of horn. It’s a play on the words κέρας (horn) / κραίνω (fulfill), and ἐλέφας (ivory) / ἐλεφαίρομαι (deceive).
+
+Keras was initially developed as part of the research effort of project ONEIROS (Open-ended Neuro-Electronic Intelligent Robot Operating System).
+
+## Deep Learning in a Nutshell
+
+![](figures/etymology.png)
+
+## Keras and R
+
+- Taylor Arnold's _kerasR_:
+
+https://github.com/statsmaths/kerasR
+
+- J.J. Allaire's _rstudio/keras_:
+
+https://rstudio.github.io/keras/
+
+Both rely on _reticulate_, R interface to Python.
+
+## Option 1: Installing kerasR
+
+1. Install Anaconda
+https://www.continuum.io/downloads
+
+2. Create a new environment
+https://conda.io/docs/using/envs.html
+
+```
+conda create --name dlnn python=3.6 anaconda
+```
+
+3. Install TensorFlow (or Theano!)
+https://www.tensorflow.org/install/
+
+Be sure to pick the GPU version if you have an NVIDIA card!
+
+## Option 1 (continued): Installing kerasR
+
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }  
+</style>
+
+
+In R:
+
+4. Install _kerasR_ package (also _reticulate_)
+```r
+install.packages("kerasR")
+```
+
+5. Activate previously created Anaconda environment
+```r
+reticulate::use_condaenv("dlnn")
+```
+
+6. Test keras availability (should return TRUE)
+```r
+reticulate::py_module_available("keras")
+```
+
+## Option 2: Installing rstudio/keras
+1. Install Anaconda
+
+https://www.continuum.io/downloads
+
+In RStudio:
+
+2. Install from GitHub (as of 08/17)
+
+```r
+devtools::install_github("rstudio/keras")
+```
+
+3. Have RStudio handle keras installation
+
+```r
+library(keras)
+install_keras(method = conda, tensorflow_gpu = FALSE) # TRUE for GPU
+```
+https://rstudio.github.io/keras/reference/install_keras.html
+
+
+## Simple example
+
+## Demo
+
+## Concluding remarks
+
+## More Keras
+
+
+[Keras.io](http://keras.io)
+
+![](figures/kerasio.png)
+
+## More Deep Learning
+![](figures/fastai.png)
+
+## Even More Deep Learning
+![](figures/coursera.png)
+
+## More Deep Learning Theory
+
+![](figures/goodfellow.jpg)
+
+## Questions
+
+## Thanks!
+
+Let's keep in touch:
+
++ Email: [b@bmorphism.us](mailto:b@bmorphism.us)
++ Twitter: @[bmorphism](https://twitter.com/bmorphism)
