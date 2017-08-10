@@ -88,6 +88,9 @@ For classification problems, we will use maximum cross-entropy.
 
 More losses here: [https://keras.io/losses/](https://keras.io/losses/)
 
+## ML ~= Optimization
+The objective of deep learning, then, is to update the weights between layers of the neural network so as to minimize the cost function on the test set.
+
 ## Backpropagation
 ![](figures/backpropagation.jpg)
 
