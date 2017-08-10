@@ -60,7 +60,7 @@ Hidden layers:
 Output layers:
 
 - linear
-- sofmax
+- softmax
 - sigmoid
 - tanh
 
@@ -84,7 +84,7 @@ Loss (or cost) function is a function that tells us how much off we are from the
 
 Mean squared error is a famous one.
 
-For classification problems, we will use maximum cross-entropy.
+For classification problems, we will use categorical cross-entropy.
 
 More losses here: [https://keras.io/losses/](https://keras.io/losses/)
 
