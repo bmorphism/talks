@@ -49,7 +49,7 @@ stopper <- callback_early_stopping(monitor = "val_loss",
 
 checker <- callback_model_checkpoint(filepath = "best_model_0.h5",
                                      monitor = "val_loss", 
-                                     ave_best_only = TRUE,
+                                     save_best_only = TRUE,
                                      mode = "min")
 
 
