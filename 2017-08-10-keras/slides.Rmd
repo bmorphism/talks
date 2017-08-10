@@ -15,17 +15,44 @@ output:
 
 ## Supervised Learning
 
+Given a dataset of input values $X$ and the corresponding outputs $y$, learn a generalizable
+function $h(X)$.
 
+DNNs are very effective at fitting non-linear $h(X)$ and achieve SOA on supervised machine learning tasks.
+
+## MNIST
+
+We are going to train a CNN (convolutional neural network) on a MNIST dataset containing labeled digits 0-9.
+
+Goal: given a labeled training set, correctly classify new images as the corresponding digit.
+
+![](figures/mnist.jpg)
+
+[](http://yann.lecun.com/exdb/mnist/)
 
 ## Neural Networks
 
+![](figures/simple_nn.jpg)
+
+
 ## Neurons
+![](figures/neuron.jpg)
 
 ## Activation functions
 
+Popular candidates:
+
+- linear
+- softmax
+- ReLU (Rectifier Linear Unit)
+
 ## Layers
 
+
+
 ## Loss function
+
+
 
 ## Backpropagation
 
@@ -53,7 +80,7 @@ Keras was initially developed as part of the research effort of project ONEIROS 
 ![](figures/etymology.png)
 
 ## Models & Layers - the Zen of Keras
-
+Simple feedforward network:
 
 ```python
 from keras.models import Sequential
@@ -111,19 +138,6 @@ Be sure to pick the GPU version if you have an NVIDIA card!
 
 ## Option 1 (continued): Install kerasR
 
-<style type="text/css">
-  .reveal p {
-    text-align: left;
-  }
-  .reveal ul {
-    display: block;
-  }
-  .reveal ol {
-    display: block;
-  }  
-</style>
-
-
 In R:
 
 4. Install _kerasR_ package (also _reticulate_)
@@ -162,8 +176,6 @@ install_keras(method = conda, tensorflow_gpu = FALSE) # TRUE for GPU
 ```
 https://rstudio.github.io/keras/reference/install_keras.html
 
-## CNN walkthrough
-
 ## Demo
 
 ## notMNIST
@@ -172,9 +184,9 @@ MNIST is a classic / clean dataset.
 
 notMNIST is a more challenging dataset developed by Yaroslav Bulatov (Google Brain / OpenAI).
 
-See what accuracy you can get!
+![](figures/notmnist.png)
 
-I recommend starting here:
+Useful for the demo code:
 
 https://github.com/davidflanagan/notMNIST-to-MNIST
 
