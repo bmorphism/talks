@@ -236,7 +236,9 @@ Goal: given a labeled training set, correctly classify new images as the corresp
 ![](figures/mnist.jpg)
 
 [](http://yann.lecun.com/exdb/mnist/)
+
 ## Demo
+
 ## notMNIST
 
 MNIST is a classic / clean dataset.

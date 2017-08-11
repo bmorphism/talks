@@ -585,6 +585,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="tensorflow-theano-and-friends" class="slide level2">
 <h2>Tensorflow, Theano, and friends</h2>
+<ul>
+<li>highly optimized for tensor operations</li>
+<li>typically low-level (C, Lua)</li>
+</ul>
 </section>
 <section id="deep-learning-in-a-nutshell" class="slide level2">
 <h2>Deep Learning in a Nutshell</h2>
@@ -639,7 +643,7 @@ model.<span class="bu">compile</span>(loss<span class="op">=</span>keras.losses.
               
 model.fit(x_train, y_train, epochs<span class="op">=</span><span class="dv">5</span>, batch_size<span class="op">=</span><span class="dv">32</span>)
 
-classes <span class="op">=</span> model.predict(x_test, batch_size<span class="op">=</span><span class="dv">128</span>)</code></pre></div>
+classes <span class="op">=</span> model.predict(x_test)</code></pre></div>
 <p><a href="https://keras.io/models/sequential/" class="uri">https://keras.io/models/sequential/</a> <a href="https://keras.io/layers/core/" class="uri">https://keras.io/layers/core/</a></p>
 </section>
 <section id="keras-and-r" class="slide level2">
@@ -713,7 +717,7 @@ classes <span class="op">=</span> model.predict(x_test, batch_size<span class="o
 <p>Keras is great for rapid prototyping and learning!</p>
 <p>When not to use Keras?</p>
 <ul>
-<li>non-standard / research neural nets</li>
+<li>neural nets in production</li>
 <li>need a good debugger (TF / PyTorch)</li>
 <li>need a dynamic computational graph (use PyTorch!)</li>
 </ul>
