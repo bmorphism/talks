@@ -1,6 +1,6 @@
 library(keras)
 
-batch_size <- 128
+batch_size <- 32
 num_classes <- 10
 epochs <- 2
 
