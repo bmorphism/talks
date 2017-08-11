@@ -152,7 +152,7 @@ model.compile(loss=keras.losses.categorical_crossentropy,
               
 model.fit(x_train, y_train, epochs=5, batch_size=32)
 
-classes = model.predict(x_test, batch_size=128)
+classes = model.predict(x_test)
 ```
 
 [https://keras.io/models/sequential/](https://keras.io/models/sequential/)
